@@ -2,24 +2,28 @@ package kr.boot.basic.service;
 
 import jakarta.transaction.Transactional;
 import kr.boot.basic.domain.Member;
-import kr.boot.basic.repository.MemberRepository;
+import kr.boot.basic.repository.SpringMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 @Transactional
 public class MemberService {
 
+    //@Autowired
+    //private final MemberRepository memberRepository;//필드
+
     @Autowired
-    private final MemberRepository memberRepository;//필드
-    public MemberService(MemberRepository repository){
-        this.memberRepository = repository;
-    }
+    private SpringMemberRepository memberRepository;
+//    public MemberService(MemberRepository repository){
+//        this.memberRepository = repository;
+//    }
 
     // 회원가입
     public boolean join(Member member){
-        if(!validateDuplicateMember(member)){
+        if(validateDuplicateMember(member)){
             memberRepository.save(member);
             return true;
         }else{
@@ -35,7 +39,7 @@ public class MemberService {
 //        };
 //        memberRepository.findById(member.getId())
 //                .ifPresent( m -> {throw new IllegalArgumentException("이미존재하는아잉디");});
-        return memberRepository.findByName(member.getName()).isPresent();
+        return memberRepository.findByName(member.getName()) == null; //memberRepository.findByName(member.getName()).isPresent();
     }
     // 전체 회원 조회
     public List<Member> findMembers(){
