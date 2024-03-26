@@ -1,19 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: header}">
-    <meta charset="UTF-8">
-    <title>집</title>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 </head>
+
 <body>
-    <div th:replace="~{fragments/bodyHeader :: bodyHeader}"> navigation bar </div>
 
-    <section>
-        <h1> 홈</h1>
-    </section>
+<div class="row">
 
+    <div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
+</div>
 
-    <div>
-        <footer th:replace="~{fragments/footer :: footer}"> footer </footer>
-    </div>
+<section>
+    <div> 홈화면 </div>
+</section>
+<div th:replace="~{fragments/footer :: footer}" />
+
+<!-- /container -->
+
 </body>
 </html>
